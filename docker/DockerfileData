@@ -1,0 +1,11 @@
+FROM meowxiik/archlinux-base:latest
+
+WORKDIR /root/provisioners
+
+COPY provisioners/data.sh ./
+RUN bash data.sh
+
+COPY keys/data/*key* /etc/ssh/
+RUN chown -R root:root /etc/ssh && \
+  chmod 600 /etc/ssh/*_key && \
+  chmod 644 /etc/ssh/*.pub

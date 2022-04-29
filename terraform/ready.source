@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export TF_LOG=WARN
+. ./.env.root
+alias tf="terraform -chdir=hcl"

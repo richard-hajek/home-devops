@@ -1,0 +1,7 @@
+.env*
+!.env.template
+.terraform*
+terraform.tfstate
+terraform.tfstate.backup
+/docker/keys
+!/docker/keys/generate.sh

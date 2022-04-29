@@ -1,0 +1,7 @@
+[hosts]
+dns.lan
+
+[managed]
+kalliope.lan
+data.lan
+buildbox.lan
