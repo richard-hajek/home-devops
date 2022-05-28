@@ -2,7 +2,6 @@ FROM archlinux:latest
 
 WORKDIR /root/provisioners
 
-COPY provisioners/base.sh provisioners/meowxiik.sh provisioners/docker.sh ./
+COPY provisioners/base.sh provisioners/meowxiik.sh ./
 RUN bash base.sh
 RUN bash meowxiik.sh
-RUN bash docker.sh

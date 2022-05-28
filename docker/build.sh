@@ -43,5 +43,4 @@ keys/generate.sh
 docker build . -f DockerfileBase -t meowxiik/archlinux-base
 docker build . -f DockerfileKalliope -t meowxiik/archlinux-kalliope
 docker build . -f DockerfileData -t meowxiik/archlinux-data
-docker build . -f DockerfileBuildbox -t meowxiik/archlinux-buildbox
 docker build . -f DockerfileDocker -t meowxiik/archlinux-docker

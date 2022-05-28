@@ -10,6 +10,7 @@ cd ~
 
 git clone https://aur.archlinux.org/yay.git
 ( cd yay; makepkg -si --noconfirm )
+rm -rf ~/go
 rm -rf yay
 
 sh -c "\$(curl -fsLS git.io/chezmoi)" -- init --apply richard-hajek || true # Allow to fail
@@ -21,6 +22,8 @@ bash ~/.bash_it/install.sh --silent
 
 yay -S libcgroup --noconfirm
 yay -S lazydocker-git --noconfirm
+
+rm -rf ~/.cache
 
 EOF
 

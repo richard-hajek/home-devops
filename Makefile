@@ -10,19 +10,35 @@ build:
 	cd docker && ./build.sh
 
 send:
-	cd docker && ./send.sh
+	cd proxmox && ./send.sh
 
 deploy:
-	cd docker && ./send.sh
+	cd docker && ./build.sh
+	cd proxmox && ./deployment/erase.sh
+	cd proxmox && ./send.sh
 	cd terraform && bash reapply.sh
 	sleep 10
 	cd ansible && ansible managed -a 'sudo reboot'
 
+deploy-test:
+	cd docker && ./build.sh
+	cd proxmox && ./deployment/erase.sh archlinux-docker.tar.gz
+	cd proxmox && ./send.sh archlinux-docker
+	cd terraform && bash destroy.sh proxmox_lxc.docker
+	cd terraform && bash apply.sh
+	sleep 5
+	cd ansible && ansible docker.lan -a 'sudo reboot'
+
 terraform:
 	cd terraform && bash apply.sh
+	cd ansible && ansible managed -a 'sudo reboot'
 
 destroy:
 	cd terraform && bash destroy.sh
 
 terraform-hard:
 	cd terraform && bash reapply.sh
+
+terraform-hard-test:
+	cd terraform && bash destroy.sh proxmox_lxc.docker
+	cd terraform && bash apply.sh

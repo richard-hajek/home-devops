@@ -2,10 +2,10 @@ FROM meowxiik/archlinux-base:latest
 
 WORKDIR /root/provisioners
 
-COPY provisioners/docker.sh ./
+COPY provisioners/docker.sh provisioners/buildbox.sh ./
 RUN bash docker.sh
+RUN bash buildbox.sh
 
 COPY keys/docker/*key* /etc/ssh/
-RUN chown -R root:root /etc/ssh && \
-  chmod 600 /etc/ssh/*_key && \
-  chmod 644 /etc/ssh/*.pub
+COPY provisioners/ssh_host_keys.sh .
+RUN bash ssh_host_keys.sh

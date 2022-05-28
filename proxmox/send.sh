@@ -31,6 +31,6 @@ if [[ $# == 2 ]]; then
   exit 0
 fi
 
-process archlinux-buildbox $(mktemp -d)
 process archlinux-data "$(mktemp -d)"
 process archlinux-kalliope "$(mktemp -d)"
+process archlinux-docker "$(mktemp -d)"
