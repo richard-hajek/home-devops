@@ -42,3 +42,6 @@ terraform-hard:
 terraform-hard-test:
 	cd terraform && bash destroy.sh proxmox_lxc.docker
 	cd terraform && bash apply.sh
+
+reboot:
+	cd ansible && ansible managed -a 'sudo reboot'
