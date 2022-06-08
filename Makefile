@@ -9,12 +9,16 @@ ensure-env:
 build:
 	cd docker && ./build.sh
 
-send:
-	cd proxmox && ./send.sh
+bootstrap:
+	cd docker && ./build.sh
+	cd proxmox && ./deployment/erase.sh archlinux-registry.tar.gz || true
+	cd proxmox && ./send.sh archlinux-registry
+	cd terraform && bash destroy.sh proxmox_lxc.registry
+	cd terraform && bash apply.sh proxmox_lxc.registry
 
 deploy:
 	cd docker && ./build.sh
-	cd proxmox && ./deployment/erase.sh
+	cd docker && ./send.sh
 	cd proxmox && ./send.sh
 	cd terraform && bash reapply.sh
 	sleep 10
@@ -45,3 +49,9 @@ terraform-hard-test:
 
 reboot:
 	cd ansible && ansible managed -a 'sudo reboot'
+
+test-audio:
+	ssh proxmox.lan mplayer "Stella\ Jang\ Villain.mp3"
+
+refresh-pulse:
+	ssh proxmox.lan systemctl --user restart pulseaudio

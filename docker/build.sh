@@ -44,3 +44,13 @@ docker build . -f DockerfileBase -t meowxiik/archlinux-base
 docker build . -f DockerfileKalliope -t meowxiik/archlinux-kalliope
 docker build . -f DockerfileData -t meowxiik/archlinux-data
 docker build . -f DockerfileDocker -t meowxiik/archlinux-docker
+docker build . -f DockerfileRegistry -t meowxiik/archlinux-registry
+
+function retag(){
+  docker tag meowxiik/archlinux-$1 registry.lan:80/archlinux-$1
+}
+
+retag base
+retag kalliope
+retag data
+retag docker

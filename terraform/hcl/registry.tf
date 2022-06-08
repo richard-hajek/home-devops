@@ -1,12 +1,15 @@
-resource "proxmox_lxc" "kalliope" {
+resource "proxmox_lxc" "registry" {
   target_node  = "proxmox"
-  hostname     = "kalliope"
-  ostemplate   = "local:vztmpl/archlinux-kalliope.tar.gz"
+  hostname     = "registry"
+  ostemplate   = "local:vztmpl/archlinux-registry.tar.gz"
 
   ostype       = "archlinux"
 
-  password     = "UNUSED"
+  password     = "UNUSED" 
   unprivileged = false
+  
+  memory = 512
+  swap = 1024
 
   start = true
   cmode = "shell"
@@ -46,11 +49,27 @@ resource "proxmox_lxc" "kalliope" {
   mountpoint {
     key     = "1"
     slot    = 1
-    storage = "/media/CloudPlus/docker/kalliope"
-    volume  = "/media/CloudPlus/docker/kalliope"
+    storage = "/media/CloudPlus"
+    volume  = "/media/CloudPlus"
+    mp      = "/mnt/Cloud"
+    size    = "800G"
+  }
+
+  mountpoint {
+    key     = "2"
+    slot    = 2
+    storage = "/media/CloudPlus/docker/registry"
+    volume  = "/media/CloudPlus/docker/registry"
     mp      = "/var/lib/docker"
     size    = "800G"
   }
 
-
+  mountpoint {
+    key     = "3"
+    slot    = 3
+    storage = "/home/meowxiik/registry"
+    volume  = "/home/meowxiik/registry"
+    mp      = "/mnt/export"
+    size    = "800G"
+  }
 }

@@ -2,11 +2,11 @@ FROM meowxiik/archlinux-base:latest
 
 WORKDIR /root/provisioners
 
-COPY provisioners/docker.sh provisioners/buildbox.sh ./
+COPY provisioners/docker.sh ./
 RUN bash docker.sh
-RUN bash buildbox.sh
-RUN systemctl disable aurbot
 
-COPY keys/docker/*key* /etc/ssh/
+COPY keys/registry/*key* /etc/ssh/
 COPY provisioners/ssh_host_keys.sh .
 RUN bash ssh_host_keys.sh
+
+COPY ./startup-scripts/registry.sh /root/autostart.sh

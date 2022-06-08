@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-. ./destroy.sh
-. ./apply.sh
+. ./destroy.sh "$@"
+. ./apply.sh "$@"

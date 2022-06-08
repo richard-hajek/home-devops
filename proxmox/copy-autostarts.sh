@@ -8,4 +8,4 @@ diff remote.autostarts.pl autostarts.pl
 echo "Continue?"
 read 
 scp ./autostarts.pl root@proxmox.lan:/var/lib/vz/snippets/
-rm autostarts.pl
+rm remote.autostarts.pl

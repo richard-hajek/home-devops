@@ -54,4 +54,13 @@ resource "proxmox_lxc" "docker" {
     mp      = "/mnt/Cloud"
     size    = "800G"
   }
+  
+  mountpoint {
+    key     = "2"
+    slot    = 2
+    storage = "/media/CloudPlus/docker/docker"
+    volume  = "/media/CloudPlus/docker/docker"
+    mp      = "/var/lib/docker"
+    size    = "800G"
+  }
 }

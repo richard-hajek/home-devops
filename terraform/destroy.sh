@@ -9,4 +9,3 @@ if [[ $# == 1 ]]; then
 fi
 
 terraform -chdir=hcl apply -destroy -auto-approve $target
-

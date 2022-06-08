@@ -21,7 +21,7 @@ if ($phase eq 'pre-start') {
 	    exit(1);
     }
 
-   	system("grep -q cap.drop /etc/pve/lxc/${vmid}.conf || echo 'lxc.cgroup2.devices.allow: a\nlxc.cgroup.devices.allow: c *:* rwm\nlxc.cgroup.devices.allow: b *:* rwm\nlxc.cap.drop:' >> /etc/pve/lxc/${vmid}.conf")
+   	system("grep -q cap.drop /etc/pve/lxc/${vmid}.conf || echo 'lxc.cgroup2.devices.allow: a\nlxc.cgroup.devices.allow: c *:* rwm\nlxc.cgroup.devices.allow: a *:* rwm\nlxc.cgroup.devices.allow: b *:* rwm\nlxc.cap.drop:' >> /etc/pve/lxc/${vmid}.conf")
 
 } elsif ($phase eq 'post-start') {
 
@@ -30,8 +30,8 @@ if ($phase eq 'pre-start') {
     print "Autostart script executed with $exit_code \n";
     
     # Copy SSH keys
-    my $exit_code = system("lxc-attach", $vmid, "--", "bash" , "-c" ,"cp /etc/ssh/keys_backup/* /etc/ssh");
-    print "Copying SSH keys from backup location executed with $exit_code \n";
+    my $ssh_exit_code = system("lxc-attach", $vmid, "--", "bash" , "-c" ,"cp /etc/ssh/keys_backup/* /etc/ssh");
+    print "Copying SSH keys from backup location executed with $ssh_exit_code \n";
 
 } elsif ($phase eq 'pre-stop') {
 
